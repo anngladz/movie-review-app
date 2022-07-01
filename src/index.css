@@ -1,13 +1,134 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: #6fc9ef;
+  font-family: 'Noto Sans', sans-serif;
+  color: #fff;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+header {
+  background-color: #498aa6;
+  height: 100px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+header h1 {
+  line-height: 100px;
+}
+
+header h1 a {
+  color: #fff;
+}
+
+.movie-list {
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-list a {
+  color: #4b4b4b;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  width: min-content;
+  height: 520px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: rgba(7, 4, 26, 0.15) 0px 0px 10px 1px;
+}
+
+.movie-card:hover {
+  background-color: #498aa6;
+  color: #fff;
+}
+
+.movie-card h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.movie-card img {
+  height: 400px;
+  margin-top: auto;
+}
+
+.movie-card p {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.movie-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 90vw;
+  margin: 0 auto;
+  background-color: #fff;
+  color: #4b4b4b;
+  border-radius: 10px;
+  box-shadow: rgba(7, 4, 26, 0.15) 0px 0px 10px 1px;
+  padding: 20px;
+}
+
+.movie-wrapper img {
+  grid-row: 1/5;
+  height: 400px;
+  justify-self: center;
+}
+
+.movie-wrapper h2,
+.movie-wrapper p:nth-of-type(2) {
+  align-self: center;
+}
+
+.btn {
+  background-color: #498aa6;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 50px;
+}
+
+.movie-wrapper a {
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 50px;
+  align-self: end;
+  justify-self: end;
+}
+
+@media (max-width: 768px) {
+  .movie-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .movie-wrapper h2 {
+    grid-row: 1;
+  }
+
+  .movie-wrapper img {
+    grid-row: 2;
+  }
 }
