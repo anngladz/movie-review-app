@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import MovieList from './components/MovieList';
-import MoviePage from './components/Movie';
+import Movie from './components/Movie';
 
 function App() {
   const [movies, setMovies] = useState([
@@ -44,12 +44,66 @@ function App() {
     },
   ]);
 
+  const [reviews, setReviews] = useState([
+    {
+      movie_id: 1,
+      id: 100,
+      text: 'Bettle Juice was good!',
+      rating: 6,
+    },
+    {
+      movie_id: 3,
+      id: 101,
+      text: 'Labyrintos!',
+      rating: 5,
+    },
+    {
+      movie_id: 5,
+      id: 102,
+      text: 'Fecking besterds',
+      rating: 6,
+    },
+    {
+      movie_id: 5,
+      id: 103,
+      text: 'FGreat Movie FGreat MovieFGreat MovieFGreat MovieFGreat MovieFGreat MovieFGreat MovieFGreat MovieFGreat MovieFGreat MovieFGreat Movie!',
+      rating: 10,
+    },
+  ]);
+
+  const addReview = (newReview) => {
+    setReviews([...reviews, newReview]);
+  };
+
+  const averageRating = (movieId) => {
+    const movieReviews = reviews.filter(
+      (review) => review.movie_id === Number(movieId)
+    );
+    return Math.round(
+      movieReviews.reduce((acc, { rating }) => acc + rating, 0) /
+        movieReviews.length
+    );
+  };
+
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path='/' element={<MovieList movies={movies} />} />
-        <Route path='/:id' element={<MoviePage movies={movies} />} />
+        <Route
+          path='/'
+          element={<MovieList movies={movies} averageRating={averageRating} />}
+        />
+        <Route
+          path='/:id'
+          element={
+            <Movie
+              movies={movies}
+              reviews={reviews}
+              addReview={addReview}
+              averageRating={averageRating}
+            />
+          }
+        />
       </Routes>
     </Router>
   );

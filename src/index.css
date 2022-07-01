@@ -76,16 +76,21 @@ header h1 a {
   margin-top: 10px;
 }
 
-.movie-wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.movie-wrapper,
+.form-wrapper,
+.review-wrapper {
   width: 90vw;
-  margin: 0 auto;
+  margin: 20px auto;
   background-color: #fff;
   color: #4b4b4b;
   border-radius: 10px;
   box-shadow: rgba(7, 4, 26, 0.15) 0px 0px 10px 1px;
   padding: 20px;
+}
+
+.movie-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .movie-wrapper img {
@@ -100,20 +105,128 @@ header h1 a {
 }
 
 .btn {
+  text-transform: uppercase;
   background-color: #498aa6;
   color: #fff;
   border: none;
   border-radius: 10px;
   width: 100px;
   height: 50px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background-color: #a2a2a2;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.count {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .movie-wrapper a {
-  text-transform: uppercase;
   text-align: center;
   line-height: 50px;
   align-self: end;
   justify-self: end;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-wrapper div {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.form-wrapper input {
+  margin: 10px 10px 0 0;
+  background-color: #f4f4f4;
+  width: 80%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.rating li {
+  margin: 10px 10px;
+  position: relative;
+  background-color: #f4f4f4;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.rating li label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.rating li:hover {
+  background: #498aa6;
+  color: #fff;
+}
+
+[type='radio'] {
+  opacity: 0;
+}
+
+[type='radio']:checked ~ label {
+  background: #498aa6;
+  color: #fff;
+}
+
+.review-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.review-wrapper span {
+  position: absolute;
+  height: 100%;
+  width: 50px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #498aa6;
+  color: #fff;
+  border-radius: 10px 0 0 10px;
+}
+
+.review-wrapper p {
+  margin-left: 50px;
 }
 
 @media (max-width: 768px) {
