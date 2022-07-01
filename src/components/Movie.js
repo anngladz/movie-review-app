@@ -1,9 +1,13 @@
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import AddReviewForm from './AddReviewForm';
 import ReviewList from './ReviewList';
+import MovieReviewsContext from '../context/MovieReviewsContext';
 
-const Movie = ({ movies, reviews, addReview, averageRating }) => {
+const Movie = () => {
+  const { movies, reviews, addReview, averageRating } =
+    useContext(MovieReviewsContext);
   const params = useParams();
   const movie = movies.find((movie) => movie.id === Number(params.id));
   const movieReviews = reviews.filter(
