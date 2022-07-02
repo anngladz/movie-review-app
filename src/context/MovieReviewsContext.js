@@ -6,6 +6,10 @@ export const MovieReviewsProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [reviewEdit, setReviewEdit] = useState({
+    item: {},
+    edit: false,
+  });
 
   useEffect(() => {
     fetchMovies();
@@ -39,6 +43,40 @@ export const MovieReviewsProvider = ({ children }) => {
     setReviews([...reviews, data]);
   };
 
+  const updateReview = async (id, updItem) => {
+    const response = await fetch(`/reviews/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updItem),
+    });
+
+    const data = await response.json();
+
+    setReviews(reviews.map((item) => (item.id === id ? data : item)));
+
+    setReviewEdit({
+      item: {},
+      edit: false,
+    });
+  };
+
+  const editReview = (item) => {
+    setReviewEdit({
+      item,
+      edit: true,
+    });
+  };
+
+  const deleteReview = async (id) => {
+    if (window.confirm('Are you sure you want to delete?')) {
+      await fetch(`/reviews/${id}`, { method: 'DELETE' });
+
+      setReviews(reviews.filter((review) => review.id !== id));
+    }
+  };
+
   const averageRating = (movieId) => {
     const movieReviews = reviews.filter(
       (review) => review.movie_id === Number(movieId)
@@ -54,9 +92,13 @@ export const MovieReviewsProvider = ({ children }) => {
       value={{
         movies,
         reviews,
-        addReview,
-        averageRating,
+        reviewEdit,
         isLoading,
+        addReview,
+        updateReview,
+        editReview,
+        deleteReview,
+        averageRating,
       }}
     >
       {children}

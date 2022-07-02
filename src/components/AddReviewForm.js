@@ -1,18 +1,30 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Rating from './Rating';
+import MovieReviewsContext from '../context/MovieReviewsContext';
 
-const AddReviewForm = ({ addReview, movieId }) => {
+const AddReviewForm = ({ movieId }) => {
   const [text, setText] = useState('');
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState('');
+
+  const { addReview, reviewEdit, updateReview } =
+    useContext(MovieReviewsContext);
+
+  useEffect(() => {
+    if (reviewEdit.edit === true) {
+      setBtnDisabled(false);
+      setText(reviewEdit.item.text);
+      setRating(reviewEdit.item.rating);
+    }
+  }, [reviewEdit]);
 
   const handleTextChange = ({ target: { value } }) => {
     if (value === '') {
       setBtnDisabled(true);
       setMessage(null);
     } else if (value.trim().length < 10) {
-      setMessage('Review must be at least 10 characters!');
+      setMessage('Review must have at least 10 characters!');
       setBtnDisabled(true);
     } else {
       setMessage(null);
@@ -31,7 +43,11 @@ const AddReviewForm = ({ addReview, movieId }) => {
         rating,
       };
 
-      addReview(newReview);
+      if (reviewEdit.edit === true) {
+        updateReview(reviewEdit.item.id, newReview);
+      } else {
+        addReview(newReview);
+      }
 
       setBtnDisabled(true);
       setRating(10);

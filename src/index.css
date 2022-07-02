@@ -121,10 +121,17 @@ header h1 a {
   cursor: not-allowed;
 }
 
+.btn-reset {
+  color: #a2a2a2;
+  background-color: inherit;
+  border: none;
+}
+
 .count {
   background-color: #f4f4f4;
   padding: 10px;
   border-radius: 10px;
+  margin: 0 10px;
 }
 
 .movie-wrapper a {
@@ -229,6 +236,21 @@ header h1 a {
   margin-left: 50px;
 }
 
+.review-wrapper .icons {
+  margin-left: auto;
+}
+
+.review-wrapper .icons svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+
+.review-wrapper .icons svg:hover {
+  color: #498aa6;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .movie-wrapper {
     grid-template-columns: repeat(1, 1fr);
@@ -243,5 +265,14 @@ header h1 a {
 
   .movie-wrapper img {
     grid-row: 2;
+  }
+
+  .movie-wrapper p {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .movie-wrapper a {
+    justify-self: center;
   }
 }
