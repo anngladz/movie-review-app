@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Rating from './Rating';
 
 const AddReviewForm = ({ addReview, movieId }) => {
@@ -28,7 +27,6 @@ const AddReviewForm = ({ addReview, movieId }) => {
     if (text.trim().length > 10) {
       const newReview = {
         movie_id: movieId,
-        id: uuidv4(),
         text,
         rating,
       };
