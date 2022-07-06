@@ -34,8 +34,8 @@ header h1 a {
 .movie-list {
   width: 90vw;
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, max-content));
   justify-content: center;
 }
 
@@ -49,7 +49,7 @@ header h1 a {
   background-color: #fff;
   width: min-content;
   height: 520px;
-  margin: 10px;
+  margin: 20px 10px;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
@@ -234,10 +234,17 @@ header h1 a {
 
 .review-wrapper p {
   margin-left: 50px;
+  margin-right: 100px;
 }
 
 .review-wrapper .icons {
-  margin-left: auto;
+  position: absolute;
+  height: 100%;
+  width: 100px;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .review-wrapper .icons svg {

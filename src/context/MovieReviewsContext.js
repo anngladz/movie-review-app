@@ -11,26 +11,29 @@ export const MovieReviewsProvider = ({ children }) => {
     edit: false,
   });
 
+  const url = 'https://mra-json-server.herokuapp.com';
+
   useEffect(() => {
     fetchMovies();
+    // This is for ratings on main page
     fetchReviews();
   }, []);
 
   const fetchMovies = async () => {
-    const response = await fetch('/movies');
+    const response = await fetch(`${url}/movies`);
     const data = await response.json();
     setMovies(data);
     setIsLoading(false);
   };
 
   const fetchReviews = async () => {
-    const response = await fetch('/reviews');
+    const response = await fetch(`${url}/reviews?_sort=id&_order=desc`);
     const data = await response.json();
     setReviews(data);
   };
 
   const addReview = async (newReview) => {
-    const response = await fetch('/reviews', {
+    const response = await fetch(`${url}/reviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,10 +44,11 @@ export const MovieReviewsProvider = ({ children }) => {
     const data = await response.json();
 
     setReviews([...reviews, data]);
+    fetchReviews();
   };
 
   const updateReview = async (id, updItem) => {
-    const response = await fetch(`/reviews/${id}`, {
+    const response = await fetch(`${url}/reviews/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -71,7 +75,7 @@ export const MovieReviewsProvider = ({ children }) => {
 
   const deleteReview = async (id) => {
     if (window.confirm('Are you sure you want to delete?')) {
-      await fetch(`/reviews/${id}`, { method: 'DELETE' });
+      await fetch(`${url}/reviews/${id}`, { method: 'DELETE' });
 
       setReviews(reviews.filter((review) => review.id !== id));
     }
@@ -94,6 +98,7 @@ export const MovieReviewsProvider = ({ children }) => {
         reviews,
         reviewEdit,
         isLoading,
+        fetchReviews,
         addReview,
         updateReview,
         editReview,

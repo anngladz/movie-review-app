@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import AddReviewForm from './AddReviewForm';
@@ -6,8 +6,13 @@ import ReviewList from './ReviewList';
 import MovieReviewsContext from '../context/MovieReviewsContext';
 
 const Movie = () => {
-  const { movies, reviews, addReview, averageRating, isLoading } =
+  const { movies, reviews, addReview, averageRating, isLoading, fetchReviews } =
     useContext(MovieReviewsContext);
+
+  useEffect(() => {
+    fetchReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const params = useParams();
   const movie = movies.find((movie) => movie.id === Number(params.id));
