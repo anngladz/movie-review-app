@@ -4,7 +4,7 @@ function Header() {
   return (
     <header>
       <h1>
-        <Link to='/'>Movie Reviews</Link>
+        <Link to='/movie-review-app/'>Movie Reviews</Link>
       </h1>
     </header>
   );

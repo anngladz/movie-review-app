@@ -10,8 +10,8 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path='/' element={<MovieList />} />
-          <Route path='/:id' element={<Movie />} />
+          <Route path='/movie-review-app/' element={<MovieList />} />
+          <Route path='/movie-review-app/:id' element={<Movie />} />
         </Routes>
       </Router>
     </MovieReviewsProvider>

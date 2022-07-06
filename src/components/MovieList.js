@@ -8,7 +8,7 @@ const MovieList = () => {
   return (
     <div className='movie-list'>
       {movies.map((movie) => (
-        <Link key={movie.id} to={`/${movie.id}`}>
+        <Link key={movie.id} to={`/movie-review-app/${movie.id}`}>
           <MovieCard movie={movie} averageRating={averageRating} />
         </Link>
       ))}
