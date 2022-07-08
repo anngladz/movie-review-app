@@ -1,4 +1,5 @@
 import Review from './Review';
+import PropTypes from 'prop-types';
 
 const ReviewList = ({ movieReviews }) => {
   return (
@@ -8,6 +9,10 @@ const ReviewList = ({ movieReviews }) => {
       ))}
     </div>
   );
+};
+
+ReviewList.propTypes = {
+  movieReviews: PropTypes.array,
 };
 
 export default ReviewList;

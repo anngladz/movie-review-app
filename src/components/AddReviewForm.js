@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Rating from './Rating';
 import MovieReviewsContext from '../context/MovieReviewsContext';
 
@@ -65,6 +66,7 @@ const AddReviewForm = ({ movieId }) => {
           placeholder='Type a review here'
           value={text}
         />
+
         <button disabled={btnDisabled} className='btn'>
           Submit
         </button>
@@ -72,6 +74,10 @@ const AddReviewForm = ({ movieId }) => {
       {message && <p className='message'>{message}</p>}
     </form>
   );
+};
+
+AddReviewForm.propTypes = {
+  movieId: PropTypes.number,
 };
 
 export default AddReviewForm;

@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AiFillEdit, AiTwotoneDelete } from 'react-icons/ai';
 import MovieReviewsContext from '../context/MovieReviewsContext';
+import PropTypes from 'prop-types';
 
 const Review = ({ movieReview }) => {
   const { editReview, deleteReview } = useContext(MovieReviewsContext);
@@ -21,6 +22,10 @@ const Review = ({ movieReview }) => {
       </div>
     </div>
   );
+};
+
+Review.propTypes = {
+  movieReview: PropTypes.object,
 };
 
 export default Review;

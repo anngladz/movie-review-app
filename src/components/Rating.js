@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Rating({ select, selected }) {
   const handleChange = (e) => {
     select(+e.currentTarget.value);
@@ -21,5 +23,10 @@ function Rating({ select, selected }) {
     </ul>
   );
 }
+
+Rating.propTypes = {
+  select: PropTypes.func,
+  selected: PropTypes.number,
+};
 
 export default Rating;

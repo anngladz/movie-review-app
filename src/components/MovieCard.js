@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const MovieCard = ({ movie, averageRating }) => {
   return (
     <div className='movie-card'>
@@ -8,6 +10,11 @@ const MovieCard = ({ movie, averageRating }) => {
       </p>
     </div>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.object,
+  averageRating: PropTypes.func,
 };
 
 export default MovieCard;

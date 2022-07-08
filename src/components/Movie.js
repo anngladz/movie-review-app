@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AddReviewForm from './AddReviewForm';
 import ReviewList from './ReviewList';
 import MovieReviewsContext from '../context/MovieReviewsContext';
+import Spinner from './Spinner';
 
 const Movie = () => {
   const { movies, reviews, addReview, averageRating, isLoading, fetchReviews } =
@@ -23,7 +24,7 @@ const Movie = () => {
   return (
     <>
       {isLoading ? (
-        'loading'
+        <Spinner />
       ) : (
         <>
           <div className='movie-wrapper'>
