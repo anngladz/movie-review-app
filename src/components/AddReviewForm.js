@@ -17,6 +17,7 @@ const AddReviewForm = ({ movieId }) => {
     if (reviewEdit.edit === true) {
       setBtnDisabled(false);
       setText(reviewEdit.item.text);
+      setAuthor(reviewEdit.item.author);
       setRating(reviewEdit.item.rating);
     }
   }, [reviewEdit]);
