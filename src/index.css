@@ -159,12 +159,15 @@ header h1 a {
 .form-wrapper input {
   margin: 10px 10px 0 0;
   background-color: #f4f4f4;
-  width: 80%;
   height: 50px;
   border: none;
   outline: none;
   border-radius: 10px;
   padding: 10px;
+}
+
+.form-wrapper input:nth-of-type(2) {
+  width: 80%;
 }
 
 .rating {
@@ -218,7 +221,7 @@ header h1 a {
   position: relative;
 }
 
-.review-wrapper span {
+.review-wrapper .rating {
   position: absolute;
   height: 100%;
   width: 50px;
@@ -235,6 +238,11 @@ header h1 a {
 .review-wrapper p {
   margin-left: 50px;
   margin-right: 100px;
+}
+
+.review-wrapper p span {
+  font-weight: bold;
+  color: #498aa6;
 }
 
 .review-wrapper .icons {

@@ -4,6 +4,7 @@ import Rating from './Rating';
 import MovieReviewsContext from '../context/MovieReviewsContext';
 
 const AddReviewForm = ({ movieId }) => {
+  const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -20,12 +21,18 @@ const AddReviewForm = ({ movieId }) => {
     }
   }, [reviewEdit]);
 
+  const handleAuthorChange = ({ target: { value } }) => {
+    setAuthor(value);
+  };
+
   const handleTextChange = ({ target: { value } }) => {
     if (value === '') {
       setBtnDisabled(true);
       setMessage(null);
-    } else if (value.trim().length < 10) {
-      setMessage('Review must have at least 10 characters!');
+    } else if (value.trim().length < 10 || author.trim().length < 3) {
+      setMessage(
+        'Author must have at least 3 characters and review must have at least 10 characters!'
+      );
       setBtnDisabled(true);
     } else {
       setMessage(null);
@@ -37,9 +44,10 @@ const AddReviewForm = ({ movieId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (text.trim().length > 10) {
+    if (text.trim().length > 10 || author.trim().length < 3) {
       const newReview = {
         movie_id: movieId,
+        author,
         text,
         rating,
       };
@@ -52,6 +60,7 @@ const AddReviewForm = ({ movieId }) => {
 
       setBtnDisabled(true);
       setRating(10);
+      setAuthor('');
       setText('');
     }
   };
@@ -62,11 +71,16 @@ const AddReviewForm = ({ movieId }) => {
       <div>
         <input
           type='text'
+          onChange={handleAuthorChange}
+          placeholder='Author'
+          value={author}
+        />
+        <input
+          type='text'
           onChange={handleTextChange}
           placeholder='Type a review here'
           value={text}
         />
-
         <button disabled={btnDisabled} className='btn'>
           Submit
         </button>

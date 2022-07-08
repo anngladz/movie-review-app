@@ -7,8 +7,10 @@ const Review = ({ movieReview }) => {
   const { editReview, deleteReview } = useContext(MovieReviewsContext);
   return (
     <div className='review-wrapper'>
-      <span>{movieReview.rating}</span>
-      <p>{movieReview.text}</p>
+      <span className='rating'>{movieReview.rating}</span>
+      <p>
+        <span>{movieReview.author}:</span> {movieReview.text}
+      </p>
       <div className='icons'>
         <button className='btn-reset' onClick={() => editReview(movieReview)}>
           <AiFillEdit />
