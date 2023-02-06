@@ -11,7 +11,7 @@ export const MovieReviewsProvider = ({ children }) => {
     edit: false,
   });
 
-  const url = 'https://mra-json-server.herokuapp.com';
+  const url = 'https://mra-json-server.vercel.app';
 
   useEffect(() => {
     fetchMovies();
