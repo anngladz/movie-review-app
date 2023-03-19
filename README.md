@@ -1,7 +1,7 @@
 # Movie Reviews App
 
 Movie list where you can add/edit/delete review and rating to each individual title.
-App is connected to the JSON server which is hosted on Heroku.
+App is connected to the JSON server which is hosted on Vercel.
 
 ---
 
